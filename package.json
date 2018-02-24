@@ -1,0 +1,64 @@
+{
+    "name": "oni-cli",
+    "version": "1.0.0-rc.15",
+    "description": "auto codding for xiaohuoni",
+    "author": "xiaohuoni",
+    "main": "index.js",
+    "license": "MIT",
+    "directories": {
+        "lib": "lib"
+    },
+    "bin": {
+        "oni": "./bin/oni.js"
+    },
+    "scripts": {
+        "build": "rm -rf lib && babel src --out-dir lib"
+    },
+    "keywords": [
+        "oni",
+        "umi",
+        "xiaohuoni"
+    ],
+    "dependencies": {
+        "chalk": "^2.1.0",
+        "commander": "^2.11.0",
+        "fs-extra": "^4.0.2",
+        "left-pad": "^1.1.3",
+        "path-exists": "^3.0.0",
+        "simple-uppercamelcase": "^1.0.0",
+        "through2": "^2.0.1",
+        "update-notifier": "^2.3.0",
+        "vinyl-fs": "^2.4.3",
+        "which": "^1.2.10",
+        "win-spawn": "^2.0.0"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.10.1",
+        "babel-plugin-add-module-exports": "^0.2.1",
+        "babel-plugin-transform-runtime": "^6.9.0",
+        "babel-preset-es2015": "^6.9.0",
+        "babel-preset-react": "^6.5.0",
+        "babel-preset-stage-0": "~6.5.0",
+        "babel-runtime": "^6.9.2"
+    },
+    "babel": {
+        "presets": [
+            "es2015",
+            "react",
+            "stage-0"
+        ],
+        "plugins": [
+            "add-module-exports",
+            "transform-runtime"
+        ]
+    },
+    "files": [
+        "lib",
+        "template",
+        "bin"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/xiaohuoni/oni-cli"
+      }
+}
