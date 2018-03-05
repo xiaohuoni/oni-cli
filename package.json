@@ -1,6 +1,6 @@
 {
     "name": "oni-cli",
-    "version": "1.0.0-rc.15",
+    "version": "1.0.0-rc.16",
     "description": "auto codding for xiaohuoni",
     "author": "xiaohuoni",
     "main": "index.js",
@@ -60,5 +60,5 @@
     "repository": {
         "type": "git",
         "url": "https://github.com/xiaohuoni/oni-cli"
-      }
+    }
 }
