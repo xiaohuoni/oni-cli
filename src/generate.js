@@ -1,11 +1,11 @@
 const fs = require('fs-extra')
 const chalk = require('chalk')
 exports.run = function(type, name) {
-    const baseFilr =  __dirname+'/../template/';
+    const baseFilr =  __dirname+'/../template/src/pages/example/';
     switch (type) {
         case 'route':
-            const pageFile = './src/page/' + name + '/' + name + '.js'
-            const styleFile = './src/page/' + name + '/' + name + '.less'
+            const pageFile = './src/pages/' + name + '/' + name + '.js'
+            const styleFile = './src/pages/' + name + '/' + name + '.less'
             fs.pathExists(pageFile, (err, exists) => {
                 if (exists) {
                     console.log('this file has created')
@@ -16,7 +16,6 @@ exports.run = function(type, name) {
                     })
                     fs.copy(`${baseFilr}page.less`, styleFile, err => {
                         if (err) return console.error(err)
-                
                         console.log(styleFile + '  has created')
                     })
                 }
