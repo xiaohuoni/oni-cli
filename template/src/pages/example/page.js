@@ -8,7 +8,7 @@ function App(props) {
     list:props.pageData.list,
     handleClick:() => {
       props.dispatch({
-        type: 'example/delete',
+        type: 'example/delete',//FIXME: 这里要修改对应的namespace
         payload: {
         },
       })
@@ -22,7 +22,7 @@ function App(props) {
       <Example {...exampleData}/>
       <Button  type="primary" onClick={() => {
           props.dispatch({
-            type: 'example/update',
+            type: 'example/update',//FIXME: 这里要修改对应的namespace
           });
         }}>点击</Button>
     </div>
@@ -31,6 +31,7 @@ function App(props) {
 
 export default connect(state => {
   return {
+    //FIXME: 这里要修改对应的namespace
     pageData: state.example
   };
 })(App);

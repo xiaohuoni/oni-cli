@@ -1,39 +1,88 @@
+this readme copy and edit for dva-cli
 # oni-cli
-auto codding for xiaohuoni with umi
+[![NPM version](https://img.shields.io/npm/v/oni-cli.svg?style=flat)](https://npmjs.org/package/oni-cli)
+[![NPM downloads](http://img.shields.io/npm/dm/oni-cli.svg?style=flat)](https://npmjs.org/package/oni-cli)
 
-CLI for [umi](https://github.com/umijs/umi) .
-## 项目结构
+CLI for [dva](https://github.com/dvajs/dva) [umi](https://github.com/umijs/umi).
+
+## Getting Started
+
+Install, create and start.
+
+```bash
+# Install
+$ npm install oni-cli -g
+
+# Create app
+$ oni new myapp
+
+# Start app
+$ cd myapp
+$ npm start
+```
+
+## Commands
+
+We have 2 commands: `new`  and `generate`(alias `g`).
+
+### oni new <appName>
+
+Create app with new directory.
+
+#### Usage Examples
+
+```bash
+$ oni new myapp
+```
 
 
-```javascript
+### oni generate <type> <name> <?pagename> (short-cut alias: "g")
+
+Generate page and component.
+
+#### Usage Examples
+
+```bash
+$ oni g page home
+#generate component '/src/pages/home/components/Table.js'
+$ oni g component Table home  
+#generate component '/src/components/Table.js'
+$ oni g component Table 
+```
+
+## Generated File Tree
+
+```bash
 .
-├── bin           //命令配置
-├── README.md     //说明文档
-├── index.js      //主入口
-├── src           //功能文件
-├── package.json  //包信息
-└── test          //测试用例
+├── mock                   # mock data
+    ├── user.js            # the mock data test
+├── public                 # index.html
+├── src                    # Source directory
+    ├── assets             # Store images, icons, ...
+    ├── components         # UI components
+    ├── layouts            # layouts
+    ├── models             # Dva global models    
+    ├── pages              # all pages (auto create Route)
+    ├── plugins            # umi plugins
+    ├── services           # Used for communicate with server
+    └── utils              # Utils
+        ├── request.js     # A util wrapped dva/fetch
+        └── config.js      # global config (name,api...)
+    
+    ├── global.less        # global less
+├── .editorconfig          #
+├── .eslintrc              # Eslint config
+├── .umirc.js              # umi
+├── .umirc.mock.js         # umi mock
+├── .webpackrc.js          # webpackrc extend(lick alias prexy)
+├── .gitignore             #
+└── package.json           #
 ```
 
-## Install 
-  
-  ```javascript
-  $ npm i oni-cli -g 
+## Configuration
 
+oni-cli use [umi](https://github.com/umijs/umi) for build and server
 
-```
+## License
 
-## Useage
-
-oni g [type] [name]     
-
-name为 你需要生成的文件名
-   
-   
-   目前支持的type：
-   
-   * route
-
-oni new [appname]
-
-appname 可选参数 输入则创建一个appname文件夹，为空则表示在当前文件夹下创建app
+[MIT](https://tldrlegal.com/license/mit-license)

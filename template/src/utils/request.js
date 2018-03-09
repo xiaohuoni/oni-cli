@@ -13,12 +13,31 @@ function checkStatus(response) {
 /**
  * Requests a URL, returning a promise.
  *
- * @param  {string} url       The URL we want to request
  * @param  {object} [options] The options we want to pass to "fetch"
+ * {
+ *   url: user,
+ *   method: 'get',
+ *   data: params,
+ *   headers:{}
+ * }
+ * {
+ *      method: 'POST', 
+ *      mode: 'cors',
+ *      body:JSON.stringify(tubState),
+ *      headers:myHeaders
+ *}
  * @return {object}           An object containing either "data" or "err"
  */
-export default async function request(url, options) {
-  const response = await fetch(url, options);
+export default async function request(options) {
+  const url = options.url;
+  const option = {
+    method: options.method,
+    mode: 'cors',
+    body: JSON.stringify(options.params),
+    headers: options.headers || {}
+  }
+
+  const response = await fetch(url, option);
 
   checkStatus(response);
 

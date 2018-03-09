@@ -1,6 +1,7 @@
-import * as exampleService from '../services/example'
+//FIXME:还没编写文件内的修改，这里要修改services的文件名
+import * as pageService from '../services/example'
 export default {
-
+//FIXME:这里要修改namespace
   namespace: 'example',
 
   state: {
@@ -36,7 +37,7 @@ export default {
       });
     },
     *update({ payload }, { call, put, select }) {
-      const data = yield call(exampleService.query, payload);
+      const data = yield call(pageService.query, payload);
       if (data) {
         yield put({
           type: 'save',
