@@ -1,14 +1,10 @@
-//FIXME:还没编写文件内的修改，这里要修改services的文件名
 import * as pageService from '../services/example'
 export default {
-//FIXME:这里要修改namespace
   namespace: 'example',
-
   state: {
     text: 'page work',
     list: []
   },
-
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, query }) => {
@@ -20,7 +16,6 @@ export default {
       });
     }
   },
-
   effects: {
     *fetch({ payload }, { call, put }) {
       yield put({
@@ -48,11 +43,9 @@ export default {
       }
     }
   },
-
   reducers: {
     save(state, action) {
       return { ...state, ...action.payload };
     },
   },
-
 };

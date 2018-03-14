@@ -31,7 +31,6 @@ function App(props) {
 
 export default connect(state => {
   return {
-    //FIXME: 这里要修改对应的namespace
     pageData: state.example
   };
 })(App);

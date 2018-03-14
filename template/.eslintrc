@@ -2,7 +2,6 @@
   "extends": "umi",
   "rules":{
     "require-yield":0,
-    "no-extend-native":0,
-    "no-unused-vars":0
-}
+    "no-extend-native":0
+  }
 }
