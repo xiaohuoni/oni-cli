@@ -38,7 +38,9 @@ build/Release
 # Dependency directories
 .idea/
 node_modules/
+template/node_modules/
 jspm_packages/
+
 
 # Typescript v1 declaration files
 typings/

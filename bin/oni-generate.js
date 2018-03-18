@@ -8,7 +8,7 @@ program
 .command('generate')
 .description('quick generate your file')
 .alias('g')
-.action(function(type, name){
-    oni.run(type, name);
+.action(function(type, name,other){
+    oni.run(type, name,other);
 });
 program.parse(process.argv);
