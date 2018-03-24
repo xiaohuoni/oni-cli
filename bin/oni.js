@@ -29,7 +29,7 @@ if (!subcmd) {
 function printHelp() {
     console.log('  Commands:');
     console.log();
-    console.log('    new            Creates a new application');
+    console.log('    new            Creates a new application (use <oni new myapp app> create mobile app)');
     console.log('    generate       Generates new code (short-cut alias: "g")');
     console.log();
     console.log('  All commands can be run with -h (or --help) for more information.')

@@ -5,6 +5,10 @@ this readme copy and edit for dva-cli
 
 CLI for [dva](https://github.com/dvajs/dva) [umi](https://github.com/umijs/umi).
 
+## update
+### 2018.03.24 
+- 1.update umi1.1 
+- 2.add Nested Route
 ## Getting Started
 
 Install, create and start.
@@ -33,6 +37,8 @@ Create app with new directory.
 
 ```bash
 $ oni new myapp
+
+$ oni new myapp mobile ( create web app )
 ```
 
 

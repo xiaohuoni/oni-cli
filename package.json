@@ -1,6 +1,6 @@
 {
     "name": "oni-cli",
-    "version": "1.0.4",
+    "version": "1.0.6-1",
     "description": "CLI for dva-umi. create by [xiaohuoni](https://github.com/xiaohuoni). last update:2014/3/14 17:53",
     "author": "xiaohuoni",
     "main": "index.js",
@@ -26,6 +26,7 @@
         "commander": "^2.11.0",
         "fs-extra": "^4.0.2",
         "left-pad": "^1.1.3",
+        "oni-react-hexagon-progress": "0.0.2",
         "path-exists": "^3.0.0",
         "simple-uppercamelcase": "^1.0.0",
         "through2": "^2.0.1",
@@ -57,6 +58,7 @@
     "files": [
         "lib",
         "template",
+        "template_app",
         "bin"
     ],
     "repository": {

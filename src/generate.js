@@ -11,6 +11,7 @@ exports.run = function(type, name,other) {
             const servicesFile = './src/pages/' + name + '/services/'+name+'.js';
             const modelsFile = './src/pages/' + name + '/models/'+name+'.js';
             const componentsFile = './src/pages/' + name + '/components/Example.js';
+            const componentsStyleFile = './src/pages/' + name + '/components/Example.less';
             const modelsStr =`
 import * as ${name}Service from '../services/${name}'
 export default {
@@ -37,24 +38,6 @@ export default {
                         text: 'page init'
                     }
             });
-        },
-        *delete({ payload }, { call, put }) {
-            yield put({
-                type: 'save', payload: {
-                        list: []
-                }
-            });
-        },
-        *update({ payload }, { call, put, select }) {
-            const data = yield call(${name}Service.query, payload);
-            if (data) {
-                yield put({
-                    type: 'save',
-                    payload: {
-                        list: data.data
-                    },
-                })
-            }
         }
     },
     reducers: {
@@ -63,45 +46,24 @@ export default {
         },
     },
 };        
-`
+`;
             const pageStr =`
 import { connect } from 'dva';
 import styles from './page.less';
-import {Button} from 'antd';
-import Example from './components/Example';
-            
-function App(props) {
-    const exampleData = {
-        list:props.pageData.list,
-        handleClick:() => {
-            props.dispatch({
-                type: '${name}/delete',
-                payload: {
-                },
-            })
-        }
-    }
+
+function App({${name},dispatch}) {
+    const { text,list } = ${name};
     return (
         <div className={styles.normal}>
             <h2>
-                {props.pageData.text}
+                {text}
             </h2>
-            <Example {...exampleData}/>
-            <Button  type="primary" onClick={() => {
-                props.dispatch({
-                    type: '${name}/update',
-                });
-            }}>点击</Button>
         </div>
     );
 }
-      
-export default connect(state => {
-    return {
-        pageData: state.${name}
-    };
-})(App);
-`
+
+export default connect(({${name}})=>({${name}}))(App);
+`;
             fs.pathExists(pageFile, (err, exists) => {
                 if (exists) {
                     console.log('this file has created')
@@ -128,16 +90,20 @@ export default connect(state => {
                         if (err) return console.error(err)
                         console.log(componentsFile + '  has created')
                     })
+                    fs.copy(`${baseFilr}/components/Example.less`, componentsStyleFile, err => {
+                        if (err) return console.error(err)
+                        console.log(componentsStyleFile + '  has created')
+                    })
                 }
             })
             break;
         case 'component':
             const componentName = name.replace(/( |^)[a-z]/g, (L) => L.toUpperCase());
             const componentFile = hasOther?'./src/pages/' + other + '/components/'+componentName+'.js':'./src/components/'+componentName+'.js';
-            const componentFileLess = hasOther?'./src/pages/' + other + '/components/'+componentName+'.js':'./src/components/'+componentName+'.less';
+            const componentFileLess = hasOther?'./src/pages/' + other + '/components/'+componentName+'.less':'./src/components/'+componentName+'.less';
             const componentStr = `
 import React from 'react';
-import {Button} from 'antd';
+import {styles} from './${componentName}.less';
 const ${componentName} = ({}) => {
   return (
     <div>
@@ -146,7 +112,7 @@ const ${componentName} = ({}) => {
   );
 };
 export default ${componentName};
-`
+`;
             fs.pathExists(pageFile, (err, exists) => {
                 if (exists) {
                     console.log('this file has created')
@@ -164,8 +130,11 @@ export default ${componentName};
             console.log()
             console.log('  Examples:')
             console.log()
-            console.log(chalk.gray('    # create a new page'))
+            console.log(chalk.gray('    # create a new page (web)'))
             console.log('    $ oni g page name')
+            console.log()
+            console.log(chalk.gray('    # create a new page (mobile)'))
+            console.log('    $ oni g page name mobile')
             console.log()
             console.log(chalk.gray('    # create a new component (globe)'))
             console.log('    $ oni g component  name')

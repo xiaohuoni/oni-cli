@@ -16,8 +16,9 @@ function error(message) {
 function success(message) {
     console.error(chalk.green(message));
 }
-exports.run = function(name) {
-    const cwd = join(__dirname, '../template');
+exports.run = function(name,other) {
+    const hasOther = typeof other === 'string' && (other === "app"||other === "mobile");
+    const cwd = join(__dirname, hasOther?'../template_app':'../template');
     const hasName = typeof name === 'string';
     const dest = hasName?process.cwd()+`/${name}/`:process.cwd();
     const projectName = basename(dest);
@@ -30,6 +31,7 @@ exports.run = function(name) {
         .on('end', function () {
             info('rename', 'gitignore -> .gitignore');
             renameSync(join(dest, 'gitignore'), join(dest, '.gitignore'));
+            renameSync(join(dest, 'eslintrc'), join(dest, '.eslintrc'));
             // if (true) {
             //     info('run', 'npm install');
             //     require('./install')(printSuccess);
