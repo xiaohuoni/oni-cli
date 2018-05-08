@@ -1,68 +1,49 @@
 {
-    "name": "oni-cli",
-    "version": "1.0.6-1",
-    "description": "CLI for dva-umi. create by [xiaohuoni](https://github.com/xiaohuoni). last update:2014/3/14 17:53",
-    "author": "xiaohuoni",
-    "main": "index.js",
-    "license": "MIT",
-    "directories": {
-        "lib": "lib"
-    },
-    "bin": {
-        "oni": "./bin/oni.js"
-    },
-    "scripts": {
-        "build": "rm -rf lib && babel src --out-dir lib"
-    },
-    "keywords": [
-        "oni",
-        "umi",
-        "dva",
-        "mock",
-        "xiaohuoni"
-    ],
-    "dependencies": {
-        "chalk": "^2.1.0",
-        "commander": "^2.11.0",
-        "fs-extra": "^4.0.2",
-        "left-pad": "^1.1.3",
-        "oni-react-hexagon-progress": "0.0.2",
-        "path-exists": "^3.0.0",
-        "simple-uppercamelcase": "^1.0.0",
-        "through2": "^2.0.1",
-        "update-notifier": "^2.3.0",
-        "vinyl-fs": "^2.4.3",
-        "which": "^1.2.10",
-        "win-spawn": "^2.0.0"
-    },
-    "devDependencies": {
-        "babel-cli": "^6.10.1",
-        "babel-plugin-add-module-exports": "^0.2.1",
-        "babel-plugin-transform-runtime": "^6.9.0",
-        "babel-preset-es2015": "^6.9.0",
-        "babel-preset-react": "^6.5.0",
-        "babel-preset-stage-0": "~6.5.0",
-        "babel-runtime": "^6.9.2"
-    },
-    "babel": {
-        "presets": [
-            "es2015",
-            "react",
-            "stage-0"
-        ],
-        "plugins": [
-            "add-module-exports",
-            "transform-runtime"
-        ]
-    },
-    "files": [
-        "lib",
-        "template",
-        "template_app",
-        "bin"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/xiaohuoni/oni-cli"
-    }
+  "name": "oni-cli",
+  "version": "2.0.0",
+  "description":
+    "CLI for dva-umi. create by [xiaohuoni](https://github.com/xiaohuoni). last update:2014/3/14 17:53",
+  "author": "xiaohuoni",
+  "main": "index.js",
+  "license": "MIT",
+  "directories": {
+    "lib": "lib"
+  },
+  "bin": {
+    "oni": "./bin/oni.js"
+  },
+  "scripts": {
+    "build": "rm -rf lib && babel src --out-dir lib"
+  },
+  "keywords": ["oni", "umi", "dva", "mock", "xiaohuoni"],
+  "dependencies": {
+    "assert": "^1.4.1",
+    "babel-runtime": "^6.9.2",
+    "chalk": "^2.4.1",
+    "cross-spawn": "^6.0.5",
+    "ejs": "^2.6.1",
+    "fs": "0.0.1-security",
+    "fs-extra": "^6.0.0",
+    "path": "^0.12.7",
+    "update-notifier": "^2.5.0",
+    "uppercamelcase": "^3.0.0",
+    "yargs-parser": "^10.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-0": "~6.5.0"
+  },
+  "babel": {
+    "presets": ["es2015", "react", "stage-0"],
+    "plugins": ["add-module-exports", "transform-runtime"]
+  },
+  "files": ["lib", "template","bin"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xiaohuoni/oni-cli"
+  }
 }

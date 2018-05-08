@@ -1,36 +1,84 @@
 #!/usr/bin/env node
-'use strict';
-//v1.0.0-rc.09版本之后的代码参考dva-cli
-const chalk = require('chalk');
-const program = require('commander');
-const spawn = require('win-spawn');
-const join = require('path').join;
-const resolve = require('path').resolve;
-const exists = require('fs-extra').existsSync;
 
-program
-    .version(require('../package').version)
-    .on('--help', printHelp)
-    .usage('<command> [options]')
-    // .command('new', 'Creates a new application')
-    // .command('generate', ' Generates new code (short-cut alias: "g")')
-    .parse(process.argv)
-const aliases = {
-    g: 'generate',
-};
+const spawn = require('cross-spawn');
+const chalk = require('chalk');
+
+const script = process.argv[2];
 const args = process.argv.slice(3);
-let subcmd = program.args[0];
-if (aliases[subcmd]) subcmd = aliases[subcmd];
-if (!subcmd) {
-    program.help();
-} else {
-    require(`./oni-${subcmd}.js`)
+
+const nodeVersion = process.versions.node;
+const versions = nodeVersion.split('.');
+const major = versions[0];
+const minor = versions[1];
+
+if (major * 10 + minor * 1 < 65) {
+  console.log(`Node version must >= 6.5, but got ${major}.${minor}`);
+  process.exit(1);
 }
-function printHelp() {
-    console.log('  Commands:');
-    console.log();
-    console.log('    new            Creates a new application (use <oni new myapp app> create mobile app)');
-    console.log('    generate       Generates new code (short-cut alias: "g")');
-    console.log();
-    console.log('  All commands can be run with -h (or --help) for more information.')
+
+// Notify update when process exits
+const updater = require('update-notifier');
+const pkg = require('../package.json');
+updater({ pkg: pkg }).notify({ defer: true });
+
+function runScript(script, args, isFork) {
+  if (isFork) {
+    const result = spawn.sync(
+      'node',
+      [require.resolve(`../lib/scripts/${script}`)].concat(args),
+      {stdio: 'inherit'} // eslint-disable-line
+    );
+    process.exit(result.status);
+  } else {
+    require(`../lib/scripts/${script}`);
+  }
+}
+
+// Add help command
+const cmds = {
+  build: 'create a production build',
+  dev: 'start a development server',
+  test: 'do unit/ui test with jest',
+  help: 'show help',
+  '-v, --version': 'show version',
+};
+
+function help(aliasedScript) {
+  let usage = `\nUsage: umi <command>\n`;
+  let helpArea = '';
+  for (var cmd in cmds) {
+    helpArea += (' ' + cmd + Array(25 - cmd.length).join(' ') + cmds[cmd] + '\n');
+  }
+  console.log([usage,helpArea].join(`\nCommands:\n\n`));
+  if (!['help', '-h', '--help'].includes(aliasedScript)) {
+    console.log(`Unknown script ${chalk.cyan(aliasedScript)}.`);
+  }
+}
+
+// Script area
+const scriptAlias = {
+  g: 'generate' // eslint-disable-line
+};
+const aliasedScript = scriptAlias[script] || script;
+
+switch (aliasedScript) {
+  case '-v':
+  case '--version':
+    console.log(pkg.version);
+    if (!(pkg._from && pkg._resolved)) {
+      console.log(chalk.cyan('@local'));
+    }
+    break;
+  case 'new':
+  // case 'build':
+  case 'dev':
+  case 'generate':
+    runScript(aliasedScript, args, /* isFork */true);
+    break;
+  case 'test':
+    runScript(aliasedScript, args);
+    break;
+  default:
+    help(aliasedScript);
+    break;
 }

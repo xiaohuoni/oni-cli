@@ -1,4 +1,5 @@
 this readme copy and edit for dva-cli
+this code copy and edit for umi
 # oni-cli
 [![NPM version](https://img.shields.io/npm/v/oni-cli.svg?style=flat)](https://npmjs.org/package/oni-cli)
 [![NPM downloads](http://img.shields.io/npm/dm/oni-cli.svg?style=flat)](https://npmjs.org/package/oni-cli)
@@ -6,6 +7,11 @@ this readme copy and edit for dva-cli
 CLI for [dva](https://github.com/dvajs/dva) [umi](https://github.com/umijs/umi).
 
 ## update
+### 2018.05.08
+- 1.use ejs
+- 2.change the app-structure like umi
+- 3.crate app (or mobile app) for Git clone
+- 4.the template managed to Git [app](https://github.com/xiaohuoni/dva-umi) [mobile](https://github.com/xiaohuoni/dva-umi-mobile)
 ### 2018.03.24 
 - 1.update umi1.1 
 - 2.add Nested Route
@@ -22,6 +28,7 @@ $ oni new myapp
 
 # Start app
 $ cd myapp
+$ npm i 
 $ npm start
 ```
 
@@ -29,7 +36,7 @@ $ npm start
 
 We have 2 commands: `new`  and `generate`(alias `g`).
 
-### oni new <appName>
+### oni new appName
 
 Create app with new directory.
 
@@ -38,7 +45,7 @@ Create app with new directory.
 ```bash
 $ oni new myapp
 
-$ oni new myapp mobile ( create web app )
+$ oni new myapp --mobile (or --web) ( create web app )
 ```
 
 
