@@ -1,40 +1,5 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function(type, args, done) {
-  switch (type) {
-    case "npm":
-      var npm = findNpm();
-      var npmArgs = args || ["install"];
-      runCmd(_which2.default.sync(npm), npmArgs, function() {
-        done();
-      });
-      break;
-    case "git":
-      var git = findGit();
-      runCmd(git, args, function() {
-        done();
-      });
-      break;
-    default:
-      runCmd(type, args, function() {
-        done();
-      });
-      break;
-  }
-};
-
-var _which = require("which");
-
-var _which2 = _interopRequireDefault(_which);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
+//https://github.com/dvajs/dva-cli/edit/next/src/install.js
+import which from "which";
 function runCmd(cmd, args, fn) {
   args = args || [];
   var runner = require("child_process").spawn(cmd, args, {
@@ -55,7 +20,7 @@ function findNpm() {
       : ["tnpm", "cnpm", "npm"];
   for (var i = 0; i < npms.length; i++) {
     try {
-      _which2.default.sync(npms[i]);
+      which.sync(npms[i]);
       console.log("use npm: " + npms[i]);
       return npms[i];
     } catch (e) {}
@@ -64,10 +29,31 @@ function findNpm() {
 }
 function findGit() {
   try {
-    var git = _which2.default.sync("git");
+    var git = which.sync("git");
     console.log("use git:");
     return git;
   } catch (e) {}
   throw new Error("please install git");
 }
-module.exports = exports["default"];
+export default function(type, args, done) {
+  switch (type) {
+    case "npm":
+      var npm = findNpm();
+      var npmArgs = args || ["install"];
+      runCmd(which.sync(npm), npmArgs, function() {
+        done();
+      });
+      break;
+    case "git":
+      var git = findGit();
+      runCmd(git, args, function() {
+        done();
+      });
+      break;
+    default:
+      runCmd(type, args, function() {
+        done();
+      });
+      break;
+  }
+}
