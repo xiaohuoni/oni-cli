@@ -1,6 +1,6 @@
 {
   "name": "oni-cli",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "description":
     "CLI for dva-umi. create by [xiaohuoni](https://github.com/xiaohuoni). last update:2014/3/14 17:53",
   "author": "xiaohuoni",
@@ -41,7 +41,7 @@
     "presets": ["es2015", "react", "stage-0"],
     "plugins": ["add-module-exports", "transform-runtime"]
   },
-  "files": ["lib", "template","bin"],
+  "files": ["lib", "template", "template-n","bin"],
   "repository": {
     "type": "git",
     "url": "https://github.com/xiaohuoni/oni-cli"
