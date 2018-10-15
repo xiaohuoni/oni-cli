@@ -37,7 +37,7 @@ export default function(opts = {}) {
   
   const cwd = opts.cwd || process.cwd();
 
-  console.log(`generate page ${file}`);
+  console.log(`generate index ${file}`);
 
   let lessTargetPath;
   let jsTargetPath;
@@ -49,10 +49,10 @@ export default function(opts = {}) {
   if (isDirectory) {
     assert(
       !directoryExists(join(cwd, "src", "pages", file)),
-      `directory src/page/${file} exists`
+      `directory src/index/${file} exists`
     );
-    jsTargetPath = join(cwd, "src", "pages", file, "page.js");
-    lessTargetPath = join(cwd, "src", "pages", file, "page.less");
+    jsTargetPath = join(cwd, "src", "pages", file, "index.js");
+    lessTargetPath = join(cwd, "src", "pages", file, "index.less");
     modelTargetPath = join(cwd, "src", "pages", file, "models", `${file}.js`);
     serviceTargetPath = join(
       cwd,
@@ -76,19 +76,19 @@ export default function(opts = {}) {
     lessTargetPath = join(cwd, "src", "pages", `${file}.less`);
   }
 
-  assert(!fileExists(jsTargetPath), `file src/page/${file} exists`);
-  assert(!fileExists(modelTargetPath), `file src/page/${file} exists`);
-  assert(!fileExists(lessTargetPath), `file src/page/${file} exists`);
-  assert(!fileExists(serviceTargetPath), `file src/page/${file} exists`);
-  assert(!fileExists(cjsTargetPath), `file src/page/${file} exists`);
-  assert(!fileExists(clessTargetPath), `file src/page/${file} exists`);
+  assert(!fileExists(jsTargetPath), `file src/index/${file} exists`);
+  assert(!fileExists(modelTargetPath), `file src/index/${file} exists`);
+  assert(!fileExists(lessTargetPath), `file src/index/${file} exists`);
+  assert(!fileExists(serviceTargetPath), `file src/index/${file} exists`);
+  assert(!fileExists(cjsTargetPath), `file src/index/${file} exists`);
+  assert(!fileExists(clessTargetPath), `file src/index/${file} exists`);
 
   const jsTpl = readFileSync(
-    join(__dirname, "../../template/example/page.js"),
+    join(__dirname, "../../template/example/index.js"),
     "utf-8"
   );
   const cssTpl = readFileSync(
-    join(__dirname, "../../template/example/page.less"),
+    join(__dirname, "../../template/example/index.less"),
     "utf-8"
   );
   const sTpl = readFileSync(

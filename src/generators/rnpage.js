@@ -37,7 +37,7 @@ export default function(opts = {}) {
   
   const cwd = opts.cwd || process.cwd();
 
-  console.log(`generate rn page ${file}`);
+  console.log(`generate rn index ${file}`);
 
   let jsTargetPath;
   let modelTargetPath;
@@ -47,9 +47,9 @@ export default function(opts = {}) {
   if (isDirectory) {
     assert(
       !directoryExists(join(cwd, "src", "pages", file)),
-      `directory src/page/${file} exists`
+      `directory src/index/${file} exists`
     );
-    jsTargetPath = join(cwd, "src", "pages", file, "page.js");
+    jsTargetPath = join(cwd, "src", "pages", file, "index.js");
     modelTargetPath = join(cwd, "src", "pages", file, "models", `${file}.js`);
     serviceTargetPath = join(
       cwd,
@@ -65,13 +65,13 @@ export default function(opts = {}) {
     jsTargetPath = join(cwd, "src", "pages", `${file}.js`);
   }
 
-  assert(!fileExists(jsTargetPath), `file src/page/${file} exists`);
-  assert(!fileExists(modelTargetPath), `file src/page/${file} exists`);
-  assert(!fileExists(serviceTargetPath), `file src/page/${file} exists`);
-  assert(!fileExists(cjsTargetPath), `file src/page/${file} exists`);
+  assert(!fileExists(jsTargetPath), `file src/index/${file} exists`);
+  assert(!fileExists(modelTargetPath), `file src/index/${file} exists`);
+  assert(!fileExists(serviceTargetPath), `file src/index/${file} exists`);
+  assert(!fileExists(cjsTargetPath), `file src/index/${file} exists`);
 
   const jsTpl = readFileSync(
-    join(__dirname, "../../template-n/example/page.js"),
+    join(__dirname, "../../template-n/example/index.js"),
     "utf-8"
   );
   

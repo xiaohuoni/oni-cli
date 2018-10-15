@@ -43,7 +43,7 @@ export default function(opts = {}) {
   } else {
     assert(
       !directoryExists(join(cwd, 'src', 'components', componentName)),
-      `directory src/page/${file} exists`,
+      `directory src/pages/${file} exists`,
     );
     jsTargetPath = join(cwd, 'src', 'components', componentName,`index.js`);
     cssTargetPath = join(cwd, 'src', 'components',componentName ,`index.less`);
