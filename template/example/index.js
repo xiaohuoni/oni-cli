@@ -1,6 +1,6 @@
 
 import { connect } from 'dva';
-import styles from './page.less';
+import styles from './index.less';
 
 function App({<%= oni.fileName %>,dispatch}) {
     const { text,list } = <%= oni.fileName %>;
