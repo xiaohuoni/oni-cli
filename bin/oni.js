@@ -35,9 +35,8 @@ function runScript(script, args, isFork) {
 
 // Add help command
 const cmds = {
-  build: 'create a production build',
-  dev: 'start a development server',
-  test: 'do unit/ui test with jest',
+  new: 'create a project',
+  g:'generate pages、serve or component',
   help: 'show help',
   '-v, --version': 'show version',
 };
